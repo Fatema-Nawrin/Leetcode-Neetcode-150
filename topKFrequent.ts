@@ -10,4 +10,4 @@ function topKFrequent(nums: number[], k: number): number[] {
   return result;
 }
 
-console.log(topKFrequent([7, 3, 4, 3, 5, 5, 5, 7], 2));
+console.log(topKFrequent([7, 3, 4, 3, 5, 5], 2));
