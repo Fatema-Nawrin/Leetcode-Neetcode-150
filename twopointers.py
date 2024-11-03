@@ -60,4 +60,45 @@ def three_sum(nums):
     return result
 
 
-print(three_sum([-1, 0, 1, 2, -1, -4]))
+# print(three_sum([-1, 0, 1, 2, -1, -4]))
+
+
+def max_area(heights):
+    left = 0
+    right = len(heights) - 1
+    res = 0
+    while left < right:
+        area = min(heights[left], heights[right]) * (right - left)
+        res = max(res, area)
+        if heights[left] <= heights[right]:
+            left += 1
+        else:
+            right -= 1
+    return res
+
+
+# print(max_area([1, 7, 2, 5, 4, 7, 3, 6]))
+
+
+def trap(height) -> int:
+    if not height:
+        return 0
+    l, r = 0, len(height) - 1
+    # Track max height seen from left and right
+    leftMax, rightMax = height[l], height[r]
+    res = 0
+    while l < r:
+        if leftMax < rightMax:
+            # Move the left pointer (l) to the right and update leftMax.
+            l += 1
+            leftMax = max(leftMax, height[l])
+            res += leftMax - height[l]
+        else:
+            # Move the right pointer (r) to the left and update rightMax.
+            r -= 1
+            rightMax = max(rightMax, height[r])
+            res += rightMax - height[r]
+    return res
+
+
+print(trap([0, 2, 0, 3, 1, 0, 1, 3, 2, 1]))
