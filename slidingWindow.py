@@ -1,3 +1,6 @@
+import collections
+
+
 def maxProfit(prices):
     buy_price = prices[0]
     max_profit = 0
@@ -9,28 +12,6 @@ def maxProfit(prices):
 
 # prices = [10, 8, 7, 5, 2]
 # print(maxProfit(prices))
-# def minWindow(s: str, t: str) -> str:
-#     if not s or not t or len(s) < len(t):
-#         return ""
-#     t_char_count = {}
-
-#     for c in t:
-#         t_char_count[c] = 1 + t_char_count.get(c, 0)
-
-#     window = {}
-#     left = 0
-#     results = []
-#     for right in range(len(s)):
-#         char = s[right]
-#         window[char] = 1 + window.get(char, 0)
-
-#         while all(window.get(char, 0) >= t_char_count[char] for char in t_char_count):
-#             print(left, right + 1)
-#             results.append(s[left : right + 1])
-#             window[s[left]] -= 1
-#             left += 1
-
-#     return min(results, key=len)
 
 
 def minWindow(s: str, t: str) -> str:
@@ -67,4 +48,29 @@ def minWindow(s: str, t: str) -> str:
     return s[start:end]
 
 
-print(minWindow("abcdxyreoy", "xyoy"))
+# print(minWindow("abcdxyreoy", "xyoy"))
+
+
+def maxSlidingWindow(nums, k):
+    output = []
+    q = collections.deque()
+    l = r = 0
+    while r < len(nums):
+
+        while q and nums[q[-1]] < nums[r]:
+            print(nums[q[-1]], nums[r])
+            q.pop()
+        q.append(r)
+
+        if l > q[0]:
+            q.popleft()
+
+        if (r + 1) >= k:
+            output.append(nums[q[0]])
+            l += 1
+        r += 1
+    print(output)
+    return output
+
+
+maxSlidingWindow([1, 2, 1, 0, 4, 2, 6], 3)
