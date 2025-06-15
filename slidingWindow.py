@@ -72,5 +72,50 @@ def maxSlidingWindow(nums, k):
     print(output)
     return output
 
+    # maxSlidingWindow([1, 2, 1, 0, 4, 2, 6], 3)
 
-maxSlidingWindow([1, 2, 1, 0, 4, 2, 6], 3)
+
+def checkInclusion(s1: str, s2: str) -> bool:
+    if len(s1) > len(s2):
+        return False
+    # Count characters in s1
+    s1_count = {}
+    for c in s1:
+        s1_count[c] = s1_count.get(c, 0) + 1
+    # Track how many unique characters we still need to match
+    required_matches = len(s1_count)
+    l = 0
+    print(s1_count)
+    print(required_matches)
+    for r in range(len(s2)):
+        # Add character from right
+
+        print(s2[r])
+
+        if s2[r] in s1_count:
+            s1_count[s2[r]] -= 1
+            if s1_count[s2[r]] == 0:
+                required_matches -= 1
+        # Check if we have a valid window
+        print(s1_count)
+        print(required_matches)
+        if required_matches == 0:
+            return True
+        # If window size equals s1 length, move left pointer
+        print("Left=", l, "Right=", r)
+
+        if r - l + 1 == len(s1):
+            print("Window")
+            if s2[l] in s1_count:
+                if s1_count[s2[l]] == 0:
+
+                    required_matches += 1
+                s1_count[s2[l]] += 1
+                print(s1_count)
+                print(required_matches)
+            l += 1
+    return False
+
+
+print(checkInclusion("hello", "ooolleoooleh"))
+print(checkInclusion("abc", "lescabb"))
