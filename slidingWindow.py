@@ -85,34 +85,27 @@ def checkInclusion(s1: str, s2: str) -> bool:
     # Track how many unique characters we still need to match
     required_matches = len(s1_count)
     l = 0
-    print(s1_count)
-    print(required_matches)
+
     for r in range(len(s2)):
         # Add character from right
-
-        print(s2[r])
 
         if s2[r] in s1_count:
             s1_count[s2[r]] -= 1
             if s1_count[s2[r]] == 0:
                 required_matches -= 1
         # Check if we have a valid window
-        print(s1_count)
-        print(required_matches)
+
         if required_matches == 0:
             return True
         # If window size equals s1 length, move left pointer
-        print("Left=", l, "Right=", r)
 
         if r - l + 1 == len(s1):
-            print("Window")
             if s2[l] in s1_count:
                 if s1_count[s2[l]] == 0:
 
                     required_matches += 1
                 s1_count[s2[l]] += 1
-                print(s1_count)
-                print(required_matches)
+
             l += 1
     return False
 
