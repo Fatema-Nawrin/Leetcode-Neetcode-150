@@ -110,5 +110,5 @@ def checkInclusion(s1: str, s2: str) -> bool:
     return False
 
 
-print(checkInclusion("hello", "ooolleoooleh"))
-print(checkInclusion("abc", "lescabb"))
+# print(checkInclusion("hello", "ooolleoooleh"))
+# print(checkInclusion("abc", "lescabb"))
